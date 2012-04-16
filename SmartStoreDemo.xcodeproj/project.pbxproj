@@ -25,7 +25,6 @@
 		FA69ED96153B9F2F00C26B11 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FA69ED94153B9F2F00C26B11 /* InfoPlist.strings */; };
 		FA69ED98153B9F2F00C26B11 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FA69ED97153B9F2F00C26B11 /* main.m */; };
 		FA69ED9A153B9F2F00C26B11 /* SmartStoreDemo-Prefix.pch in Resources */ = {isa = PBXBuildFile; fileRef = FA69ED99153B9F2F00C26B11 /* SmartStoreDemo-Prefix.pch */; };
-		FA69EDB7153B9F3000C26B11 /* SFTestRunnerPlugin.js in Resources */ = {isa = PBXBuildFile; fileRef = FA69EDB6153B9F3000C26B11 /* SFTestRunnerPlugin.js */; };
 		FA69EDB9153B9F3000C26B11 /* SalesforceHybridSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA69EDB8153B9F3000C26B11 /* SalesforceHybridSDK.framework */; };
 		FA69EDBB153B9F3000C26B11 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FA69EDBA153B9F3000C26B11 /* libsqlite3.dylib */; };
 		FA69EDBF153B9F3000C26B11 /* icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = FA69EDBE153B9F3000C26B11 /* icon-72.png */; };
@@ -42,6 +41,7 @@
 		FA69EDD9153B9F3100C26B11 /* PhoneGap.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA69EDD8153B9F3100C26B11 /* PhoneGap.plist */; };
 		FA69EDDB153B9F3100C26B11 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = FA69EDDA153B9F3100C26B11 /* Settings.bundle */; };
 		FA69EDDD153B9F3100C26B11 /* PhoneGapResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = FA69EDDC153B9F3100C26B11 /* PhoneGapResources.bundle */; };
+		FA69EDF0153BB79800C26B11 /* www in Resources */ = {isa = PBXBuildFile; fileRef = FA69EDEF153BB79800C26B11 /* www */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -73,35 +73,10 @@
 		FA69ED8B153B9F2F00C26B11 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		FA69ED8D153B9F2F00C26B11 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		FA69ED8F153B9F2F00C26B11 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		FA69ED93153B9F2F00C26B11 /* SmartStoreDemo-Info.plist */ = {isa = PBXFileReference; path = "SmartStoreDemo-Info.plist"; sourceTree = "<group>"; };
+		FA69ED93153B9F2F00C26B11 /* SmartStoreDemo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SmartStoreDemo-Info.plist"; sourceTree = "<group>"; };
 		FA69ED95153B9F2F00C26B11 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		FA69ED97153B9F2F00C26B11 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		FA69ED99153B9F2F00C26B11 /* SmartStoreDemo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SmartStoreDemo-Prefix.pch"; sourceTree = "<group>"; };
-		FA69ED9C153B9F3000C26B11 /* bootconfig.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = bootconfig.js; sourceTree = "<group>"; };
-		FA69ED9D153B9F3000C26B11 /* bootstrap.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = bootstrap.html; sourceTree = "<group>"; };
-		FA69ED9E153B9F3000C26B11 /* forcetk.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = forcetk.js; sourceTree = "<group>"; };
-		FA69ED9F153B9F3000C26B11 /* index.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
-		FA69EDA0153B9F3000C26B11 /* inline.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = inline.js; sourceTree = "<group>"; };
-		FA69EDA3153B9F3000C26B11 /* ajax-loader.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ajax-loader.png"; sourceTree = "<group>"; };
-		FA69EDA4153B9F3000C26B11 /* icon-search-black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-search-black.png"; sourceTree = "<group>"; };
-		FA69EDA5153B9F3000C26B11 /* icons-18-black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icons-18-black.png"; sourceTree = "<group>"; };
-		FA69EDA6153B9F3000C26B11 /* icons-18-white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icons-18-white.png"; sourceTree = "<group>"; };
-		FA69EDA7153B9F3000C26B11 /* icons-36-black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icons-36-black.png"; sourceTree = "<group>"; };
-		FA69EDA8153B9F3000C26B11 /* icons-36-white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icons-36-white.png"; sourceTree = "<group>"; };
-		FA69EDA9153B9F3000C26B11 /* jquery-1.6.2.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "jquery-1.6.2.js"; sourceTree = "<group>"; };
-		FA69EDAA153B9F3000C26B11 /* jquery-1.6.2.min.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "jquery-1.6.2.min.js"; sourceTree = "<group>"; };
-		FA69EDAB153B9F3000C26B11 /* jquery.mobile-1.0b2.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = "jquery.mobile-1.0b2.css"; sourceTree = "<group>"; };
-		FA69EDAC153B9F3000C26B11 /* jquery.mobile-1.0b2.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "jquery.mobile-1.0b2.js"; sourceTree = "<group>"; };
-		FA69EDAD153B9F3000C26B11 /* jquery.mobile-1.0b2.min.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = "jquery.mobile-1.0b2.min.css"; sourceTree = "<group>"; };
-		FA69EDAE153B9F3000C26B11 /* jquery.mobile-1.0b2.min.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "jquery.mobile-1.0b2.min.js"; sourceTree = "<group>"; };
-		FA69EDAF153B9F3000C26B11 /* phonegap-1.2.0.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = "phonegap-1.2.0.js"; sourceTree = "<group>"; };
-		FA69EDB0153B9F3000C26B11 /* qunit.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = qunit.css; sourceTree = "<group>"; };
-		FA69EDB1153B9F3000C26B11 /* qunit.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = qunit.js; sourceTree = "<group>"; };
-		FA69EDB2153B9F3000C26B11 /* SalesforceOAuthPlugin.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = SalesforceOAuthPlugin.js; sourceTree = "<group>"; };
-		FA69EDB3153B9F3000C26B11 /* SFHybridApp.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = SFHybridApp.css; sourceTree = "<group>"; };
-		FA69EDB4153B9F3000C26B11 /* SFHybridApp.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = SFHybridApp.js; sourceTree = "<group>"; };
-		FA69EDB5153B9F3000C26B11 /* SFSmartStorePlugin.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = SFSmartStorePlugin.js; sourceTree = "<group>"; };
-		FA69EDB6153B9F3000C26B11 /* SFTestRunnerPlugin.js */ = {isa = PBXFileReference; lastKnownFileType = folder; name = SFTestRunnerPlugin.js; sourceTree = "<group>"; };
 		FA69EDB8153B9F3000C26B11 /* SalesforceHybridSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SalesforceHybridSDK.framework; sourceTree = "<group>"; };
 		FA69EDBA153B9F3000C26B11 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = /usr/lib/libsqlite3.dylib; sourceTree = DEVELOPER_DIR; };
 		FA69EDBE153B9F3000C26B11 /* icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-72.png"; path = "Resources/icons/icon-72.png"; sourceTree = "<group>"; };
@@ -113,12 +88,13 @@
 		FA69EDCB153B9F3000C26B11 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "Resources/splash/Default@2x.png"; sourceTree = "<group>"; };
 		FA69EDCD153B9F3000C26B11 /* Default~iPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default~iPad.png"; path = "Resources/splash/Default~iPad.png"; sourceTree = "<group>"; };
 		FA69EDCF153B9F3000C26B11 /* readme.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = readme.md; sourceTree = "<group>"; };
-		FA69EDD2153B9F3000C26B11 /* AppDelegate.h */ = {isa = PBXFileReference; name = AppDelegate.h; path = Classes/AppDelegate.h; sourceTree = "<group>"; };
+		FA69EDD2153B9F3000C26B11 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Classes/AppDelegate.h; sourceTree = "<group>"; };
 		FA69EDD3153B9F3100C26B11 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Classes/AppDelegate.m; sourceTree = "<group>"; };
 		FA69EDD6153B9F3100C26B11 /* README */ = {isa = PBXFileReference; lastKnownFileType = text; name = README; path = Plugins/README; sourceTree = "<group>"; };
 		FA69EDD8153B9F3100C26B11 /* PhoneGap.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = PhoneGap.plist; sourceTree = "<group>"; };
 		FA69EDDA153B9F3100C26B11 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		FA69EDDC153B9F3100C26B11 /* PhoneGapResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = PhoneGapResources.bundle; sourceTree = "<group>"; };
+		FA69EDEF153BB79800C26B11 /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; path = www; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,12 +167,12 @@
 		FA69ED91153B9F2F00C26B11 /* SmartStoreDemo */ = {
 			isa = PBXGroup;
 			children = (
+				FA69EDEF153BB79800C26B11 /* www */,
 				FA69EDB8153B9F3000C26B11 /* SalesforceHybridSDK.framework */,
 				FA69EDBA153B9F3000C26B11 /* libsqlite3.dylib */,
 				FA69EDCF153B9F3000C26B11 /* readme.md */,
 				FA69EDDA153B9F3100C26B11 /* Settings.bundle */,
 				FA69EDDC153B9F3100C26B11 /* PhoneGapResources.bundle */,
-				FA69ED9B153B9F3000C26B11 /* www */,
 				FA69EDBC153B9F3000C26B11 /* Resources */,
 				FA69EDD1153B9F3000C26B11 /* Classes */,
 				FA69EDD5153B9F3100C26B11 /* Plugins */,
@@ -215,54 +191,6 @@
 				FA69EDD8153B9F3100C26B11 /* PhoneGap.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		FA69ED9B153B9F3000C26B11 /* www */ = {
-			isa = PBXGroup;
-			children = (
-				FA69ED9C153B9F3000C26B11 /* bootconfig.js */,
-				FA69ED9D153B9F3000C26B11 /* bootstrap.html */,
-				FA69ED9E153B9F3000C26B11 /* forcetk.js */,
-				FA69ED9F153B9F3000C26B11 /* index.html */,
-				FA69EDA0153B9F3000C26B11 /* inline.js */,
-				FA69EDA1153B9F3000C26B11 /* jquery */,
-				FA69EDAF153B9F3000C26B11 /* phonegap-1.2.0.js */,
-				FA69EDB0153B9F3000C26B11 /* qunit.css */,
-				FA69EDB1153B9F3000C26B11 /* qunit.js */,
-				FA69EDB2153B9F3000C26B11 /* SalesforceOAuthPlugin.js */,
-				FA69EDB3153B9F3000C26B11 /* SFHybridApp.css */,
-				FA69EDB4153B9F3000C26B11 /* SFHybridApp.js */,
-				FA69EDB5153B9F3000C26B11 /* SFSmartStorePlugin.js */,
-				FA69EDB6153B9F3000C26B11 /* SFTestRunnerPlugin.js */,
-			);
-			path = www;
-			sourceTree = "<group>";
-		};
-		FA69EDA1153B9F3000C26B11 /* jquery */ = {
-			isa = PBXGroup;
-			children = (
-				FA69EDA2153B9F3000C26B11 /* images */,
-				FA69EDA9153B9F3000C26B11 /* jquery-1.6.2.js */,
-				FA69EDAA153B9F3000C26B11 /* jquery-1.6.2.min.js */,
-				FA69EDAB153B9F3000C26B11 /* jquery.mobile-1.0b2.css */,
-				FA69EDAC153B9F3000C26B11 /* jquery.mobile-1.0b2.js */,
-				FA69EDAD153B9F3000C26B11 /* jquery.mobile-1.0b2.min.css */,
-				FA69EDAE153B9F3000C26B11 /* jquery.mobile-1.0b2.min.js */,
-			);
-			path = jquery;
-			sourceTree = "<group>";
-		};
-		FA69EDA2153B9F3000C26B11 /* images */ = {
-			isa = PBXGroup;
-			children = (
-				FA69EDA3153B9F3000C26B11 /* ajax-loader.png */,
-				FA69EDA4153B9F3000C26B11 /* icon-search-black.png */,
-				FA69EDA5153B9F3000C26B11 /* icons-18-black.png */,
-				FA69EDA6153B9F3000C26B11 /* icons-18-white.png */,
-				FA69EDA7153B9F3000C26B11 /* icons-36-black.png */,
-				FA69EDA8153B9F3000C26B11 /* icons-36-white.png */,
-			);
-			path = images;
 			sourceTree = "<group>";
 		};
 		FA69EDBC153B9F3000C26B11 /* Resources */ = {
@@ -367,7 +295,6 @@
 			files = (
 				FA69ED96153B9F2F00C26B11 /* InfoPlist.strings in Resources */,
 				FA69ED9A153B9F2F00C26B11 /* SmartStoreDemo-Prefix.pch in Resources */,
-				FA69EDB7153B9F3000C26B11 /* SFTestRunnerPlugin.js in Resources */,
 				FA69EDBF153B9F3000C26B11 /* icon-72.png in Resources */,
 				FA69EDC1153B9F3000C26B11 /* icon.png in Resources */,
 				FA69EDC3153B9F3000C26B11 /* icon@2x.png in Resources */,
@@ -381,6 +308,7 @@
 				FA69EDD9153B9F3100C26B11 /* PhoneGap.plist in Resources */,
 				FA69EDDB153B9F3100C26B11 /* Settings.bundle in Resources */,
 				FA69EDDD153B9F3100C26B11 /* PhoneGapResources.bundle in Resources */,
+				FA69EDF0153BB79800C26B11 /* www in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

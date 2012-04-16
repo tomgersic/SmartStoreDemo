@@ -1,99 +1,169 @@
-//Sample code for Hybrid REST Explorer
-
+/**
+ * UI Action Event Handlers
+ **/
 function regLinkClickHandlers() {
     var $j = jQuery.noConflict();
-    $j('#link_fetch_device_contacts').click(function() {
-                                           SFHybridApp.logToConsole("link_fetch_device_contacts clicked");
-                                           var options = new ContactFindOptions();
-                                           options.filter = ""; // empty search string returns all contacts
-                                           options.multiple = true;
-                                           var fields = ["name"];
-                                           navigator.contacts.find(fields, onSuccessDevice, onErrorDevice, options);
-                                           });
     
-    $j('#link_fetch_sfdc_contacts').click(function() {
-                                         SFHybridApp.logToConsole("link_fetch_sfdc_contacts clicked");
-                                         forcetkClient.query("SELECT Name FROM Contact", onSuccessSfdcContacts, onErrorSfdc); 
-                                         });
+    $j('#link_query_sfdc').click(function() {
+      SFHybridApp.logToConsole("Query SFDC Button Clicked");
+      var soupName = $j("#text_smartstorename").val();
+      var indexDefinition = $j("#textarea_indexdef").val();
+      var queryString = $j("#text_query").val();
+
+      SFHybridApp.logToConsole("Creating SmartStore Soup Named: "+soupName);
+      registerSoup(soupName,indexDefinition);
+
+
+      SFHybridApp.logToConsole("Querying REST API: "+queryString);
+      
+      //query SFDC with ForceTK
+      window.forcetkClient.ajax(queryString,function(response){
+        writeToSoup(soupName,response.items);
+      },logError);
+
+
+    });
+    
+    $j('#link_query_smartstore').click(function() {
+      SFHybridApp.logToConsole("Query Smartstore Button Clicked");
+      var soupName = $j("#text_smartstorename").val();
+      querySoup(soupName);
+    });
     
     $j('#link_fetch_sfdc_accounts').click(function() {
-                                         SFHybridApp.logToConsole("link_fetch_sfdc_accounts clicked");
-                                         forcetkClient.query("SELECT Name FROM Account", onSuccessSfdcAccounts, onErrorSfdc); 
-                                         });
+      SFHybridApp.logToConsole("link_fetch_sfdc_accounts clicked");
+      forcetkClient.query("SELECT Name FROM Account", onSuccessSfdcAccounts, onErrorSfdc); 
+    });
     
     $j('#link_reset').click(function() {
-                           SFHybridApp.logToConsole("link_reset clicked");
-                           $j("#div_device_contact_list").html("")
-                           $j("#div_sfdc_contact_list").html("")
-                           $j("#div_sfdc_account_list").html("")
-                           $j("#console").html("")
-                           });
+      SFHybridApp.logToConsole("link_reset clicked");
+      clearOfflineSoups();
+    });
                            
     $j('#link_logout').click(function() {
-             SFHybridApp.logToConsole("link_logout clicked");
-             SalesforceOAuthPlugin.logout();
-             });
+      SFHybridApp.logToConsole("link_logout clicked");
+      SalesforceOAuthPlugin.logout();
+    });
 }
 
-function onSuccessDevice(contacts) {
-    var $j = jQuery.noConflict();
-    SFHybridApp.logToConsole("onSuccessDevice: received " + contacts.length + " contacts");
-    $j("#div_device_contact_list").html("")
-    var ul = $j('<ul data-role="listview" data-inset="true" data-theme="a" data-dividertheme="a"></ul>');
-    $j("#div_device_contact_list").append(ul);
+
+
+//Keep a list of registered SmartStore Soup names. Might come in handy on a rainy day...
+var registeredSoups = new Array();
     
-    ul.append($j('<li data-role="list-divider">Device Contacts: ' + contacts.length + '</li>'));
-    $j.each(contacts, function(i, contact) {
-           var formattedName = contact.name.formatted;
-           if (formattedName) {
-           var newLi = $j("<li><a href='#'>" + (i+1) + " - " + formattedName + "</a></li>");
-           ul.append(newLi);
-           }
-           });
+/**
+ * Write Response records to a Soup
+ **/
+  function writeToSoup(soupName,records) {
+    SFHybridApp.logToConsole("Writing "+records.length+" records to Soup "+soupName);
+
+    if(hasSmartstore())
+    {
+      $j.each(records, function(index,value) {
+          SFHybridApp.logToConsole("record "+index+": "+JSON.stringify(value));
+      });
+      
+      navigator.smartstore.upsertSoupEntries(soupName,records, function(){
+        SFHybridApp.logToConsole("Soup Upsert Success");        
+      }, logError);
+    }
+ }
+
+/**
+ * Register a SmartStore Soup
+ **/
+function registerSoup(soupName,indexDefinition) {
+  SFHybridApp.logToConsole("registerSoup()");      
+  if (hasSmartstore()) {
+    registeredSoups.push(soupName);
+    SFHybridApp.logToConsole("Registering soup "+soupName+" with indexes "+indexDefinition);
     
-    $j("#div_device_contact_list").trigger( "create" )
+    //yes, I know, "indices". Meh.
+    var indexes = $j.parseJSON(indexDefinition);
+    
+    navigator.smartstore.registerSoup(soupName,
+                                    indexes,                                  
+                                    function(){
+                                      SFHybridApp.logToConsole(soupName+" Soup Registered")
+                                    }, 
+                                    logError);
+  }
+}
+    
+/**
+ * Clear Any Offline Soups
+ **/
+function clearOfflineSoups(callback) {
+  SFHybridApp.logToConsole("clearOfflineSoups");
+  if (hasSmartstore()) {
+    var cbCount = 0;
+    var success = function() {
+      SFHybridApp.logToConsole('cleared soup');
+      if(++cbCount == 2 && typeof callback == 'function') callback();
+    }
+
+    $j.each(registeredSoups, function(index,record) {
+      SFHybridApp.logToConsole("Removing Soup: "+record);
+      navigator.smartstore.removeSoup(record, function(){
+          SFHybridApp.logToConsole("Soup removed: "+record);
+      }, logError);
+    });
+  }
 }
 
-function onErrorDevice(error) {
-    SFHybridApp.logToConsole("onErrorDevice: " + JSON.stringify(error) );
-    alert('Error getting device contacts!');
+/**
+ * Query Soup, post contents to log
+ **/
+function querySoup(soupName) {
+    SFHybridApp.logToConsole("Querying Soup "+soupName);
+    if (hasSmartstore()) {
+        var querySpec = navigator.smartstore.buildAllQuerySpec("id", null, 20);
+        
+        navigator.smartstore.querySoup(soupName,querySpec,
+                                           function(cursor) { onSuccessQuerySoup(cursor); },
+                                           logError);
+    }
 }
 
-function onSuccessSfdcContacts(response) {
-    var $j = jQuery.noConflict();
-    SFHybridApp.logToConsole("onSuccessSfdcContacts: received " + response.totalSize + " contacts");
+function onSuccessQuerySoup(cursor) {
+    console.log("onSuccessQuerySoup()");
+    var entries = [];
+        
+    function addEntriesFromCursor() {
+        var curPageEntries = cursor.currentPageOrderedEntries;
+        $j.each(curPageEntries, function(i,entry) {
+           entries.push(entry);
+        });
+    }
     
-    $j("#div_sfdc_contact_list").html("")
-    var ul = $j('<ul data-role="listview" data-inset="true" data-theme="a" data-dividertheme="a"></ul>');
-    $j("#div_sfdc_contact_list").append(ul);
+    addEntriesFromCursor();
+
+    while(cursor.currentPageIndex < cursor.totalPages - 1) {
+        navigator.smartstore.moveCursorToNextPage(cursor, addEntriesFromCursor);
+    }
     
-    ul.append($j('<li data-role="list-divider">Salesforce Contacts: ' + response.totalSize + '</li>'));
-    $j.each(response.records, function(i, contact) {
-           var newLi = $j("<li><a href='#'>" + (i+1) + " - " + contact.Name + "</a></li>");
-           ul.append(newLi);
-           });
-    
-    $j("#div_sfdc_contact_list").trigger( "create" )
+    navigator.smartstore.closeCursor(cursor);
+    SFHybridApp.logToConsole("***ENTRIES***");
+    SFHybridApp.logToConsole(JSON.stringify(entries));
+    SFHybridApp.logToConsole(entries.length);
 }
 
-function onSuccessSfdcAccounts(response) {
-    var $j = jQuery.noConflict();
-    SFHybridApp.logToConsole("onSuccessSfdcAccounts: received " + response.totalSize + " accounts");
-    
-    $j("#div_sfdc_account_list").html("")
-    var ul = $j('<ul data-role="listview" data-inset="true" data-theme="a" data-dividertheme="a"></ul>');
-    $j("#div_sfdc_account_list").append(ul);
-    
-    ul.append($j('<li data-role="list-divider">Salesforce Accounts: ' + response.totalSize + '</li>'));
-    $j.each(response.records, function(i, record) {
-           var newLi = $j("<li><a href='#'>" + (i+1) + " - " + record.Name + "</a></li>");
-           ul.append(newLi);
-           });
-    
-    $j("#div_sfdc_account_list").trigger( "create" )
+/**
+ * Check if SmartStore Plugin Exists
+ **/
+function hasSmartstore() {
+    SFHybridApp.logToConsole("hasSmartstore()");
+    if (PhoneGap.hasResource("smartstore") && navigator.smartstore) {
+        SFHybridApp.logToConsole("SmartStore plugin found and loaded");
+        return true;
+    }
+    SFHybridApp.logToConsole("SmartStore plugin not found");
+    return false;
 }
 
-function onErrorSfdc(error) {
-    SFHybridApp.logToConsole("onErrorSfdc: " + JSON.stringify(error));
-    alert('Error getting sfdc contacts!');
+/**
+ * Error Received
+ **/
+function logError(error) {
+    SFHybridApp.logToConsole("Error: " + JSON.stringify(error));
 }

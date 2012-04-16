@@ -4,15 +4,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no;" />
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
 
+    <script type="text/javascript" charset="utf-8">
+      //Handle JS Errors
+      window.onerror = function(errorMsg,url,lineNumber) {
+        alert("[ERROR] "+errorMsg+" | "+url+" | "+lineNumber);
+        console.log("[ERROR] "+errorMsg+" | "+url+" | "+lineNumber);
+      }
+    </script>
+
     <!-- include jquery mobile -->
-    <link rel="stylesheet" href="jquery/jquery.mobile-1.0b2.min.css" />
-    <script src="jquery/jquery-1.6.2.min.js"></script>
-    <script src="jquery/jquery.mobile-1.0b2.min.js"></script>
+    <link rel="stylesheet" href="jquery/jquery.mobile-1.0.1.min.css" />
+    <script src="jquery/jquery-1.6.4.min.js"></script>
+    <script src="jquery/jquery.mobile-1.0.1.min.js"></script>
         
     <!-- include phonegap / callback -->
-	<script type="text/javascript" charset="utf-8" src="phonegap-1.2.0.js"></script>
+    <script type="text/javascript" charset="utf-8" src="phonegap-1.2.0.js"></script>
     <!-- required for oauth plugin support -->    
     <script type="text/javascript" src="SalesforceOAuthPlugin.js"></script>
+
+    <!-- SmartStore Plugin -->
+    <script type="text/javascript" charset="utf-8" src="SFSmartStorePlugin.js"></script>
+
 
     <!-- include forcetk for REST transaction support -->
     <script src="forcetk.js"></script>
@@ -26,33 +38,14 @@
     
     // The version of the REST API you wish to use in your app.
     var apiVersion = "v23.0";
-
-	// If you want to prevent dragging, uncomment this section
-	/*
-	function preventBehavior(e) 
-	{ 
-      e.preventDefault(); 
-    };
-	document.addEventListener("touchmove", preventBehavior, false);
-	*/
-	
-	/* If you are supporting your own protocol, the var invokeString will contain any arguments to the app launch.
-	see http://iphonedevelopertips.com/cocoa/launching-your-own-application-via-a-custom-url-scheme.html
-	for more details -jm */
-	/*
-	function handleOpenURL(url)
-	{
-		// do something with the url passed in.
-	}
-	*/
 	
     var forcetkClient;
     var debugMode = true;
 
     jQuery(document).ready(function() {
-        //Add event listeners and so forth here
-        SFHybridApp.logToConsole("onLoad: jquery ready");
-		document.addEventListener("deviceready", onDeviceReady,false);
+      //Add event listeners and so forth here
+      SFHybridApp.logToConsole("onLoad: jquery ready");
+		  document.addEventListener("deviceready", onDeviceReady,false);
 
     });
 
@@ -83,11 +76,9 @@
     function getAuthCredentialsError(error) {
         SFHybridApp.logToConsole("getAuthCredentialsError: " + error);
     }
-        
-    </script>
-        
+  </script>
 	<!-- load our app-specific code -->
-    <script src="inline.js"></script>       
+  <script type="text/javascript" src="inline.js"></script>       
 
   </head>
   <body>
@@ -96,19 +87,24 @@
               <h1>Hybrid REST Explorer (SalesforceMobileSDK + PhoneGap + JQM)</h1> 
           </div> 
 
-          <div id="#content" data-role="content"> 
-
-              <p><a href="#" id="link_fetch_device_contacts" data-role="button" data-inline="true">Fetch Device contacts</a></p>
-              <p><a href="#" id="link_fetch_sfdc_contacts" data-role="button" data-inline="true">Fetch SFDC contacts</a></p>
-              <p><a href="#" id="link_fetch_sfdc_accounts" data-role="button" data-inline="true">Fetch SFDC Accounts</a></p>
-              <p><a href="#" id="link_reset" data-role="button" data-inline="true">Reset</a></p>
-
-              <p><a href="#" id="link_logout" data-role="button" data-inline="true">Logout</a></p>
-
-              <div id="div_device_contact_list"></div>
-              <div id="div_sfdc_contact_list"></div>
-              <div id="div_sfdc_account_list"></div>
-
+          <div id="#content" data-role="content">
+              <div data-role="fieldcontain">
+                  <label for="name">Soup Name:</label>
+                  <input type="text" name="name" id="text_smartstorename" value="EggDrop"/>
+              </div>
+              <div data-role="fieldcontain">
+                <label for="textarea">Indexes:</label>
+<textarea cols="40" rows="8" name="textarea_indexdef" id="textarea_indexdef">
+[
+{"path":"id","type":"string"}
+]</textarea>
+              </div>
+              <div data-role="fieldcontain">
+                  <label for="name">REST Query:</label>
+                  <input type="text" name="name" id="text_query" value="/v24.0/chatter/feeds/news/me/feed-items?pageSize=10"/>
+              </div>
+              <p><a href="#" id="link_query_sfdc" data-role="button" data-inline="true">Query SFDC</a> <a href="#" id="link_query_smartstore" data-role="button" data-inline="true">Query SmartStore</a></p>
+              <p><a href="#" id="link_reset" data-role="button" data-inline="true">Reset SmartStore</a> <a href="#" id="link_logout" data-role="button" data-inline="true">Logout</a></p>
               <h3>console:</h3>
               <p id="console" class="logWindow">
               </p>
