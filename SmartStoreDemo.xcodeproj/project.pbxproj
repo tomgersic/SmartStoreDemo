@@ -416,6 +416,7 @@
 		FA69EDE2153B9F3100C26B11 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Model Metrics, Inc.";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/SmartStoreDemo\"",
@@ -424,6 +425,7 @@
 				GCC_PREFIX_HEADER = "SmartStoreDemo/SmartStoreDemo-Prefix.pch";
 				INFOPLIST_FILE = "SmartStoreDemo/SmartStoreDemo-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "7A3FB5B5-6263-4F27-B421-9CD02676CD3C";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -447,6 +449,7 @@
 				FA69EDE2153B9F3100C26B11 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
