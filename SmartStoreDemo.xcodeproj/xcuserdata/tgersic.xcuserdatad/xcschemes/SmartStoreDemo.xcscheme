@@ -13,7 +13,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "FA69ED6E153B9F2F00C26B11"
+               BlueprintIdentifier = "FA5098A0158FF313006D5127"
                BuildableName = "SmartStoreDemo.app"
                BlueprintName = "SmartStoreDemo"
                ReferencedContainer = "container:SmartStoreDemo.xcodeproj">
@@ -31,7 +31,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "FA69ED6E153B9F2F00C26B11"
+            BlueprintIdentifier = "FA5098A0158FF313006D5127"
             BuildableName = "SmartStoreDemo.app"
             BlueprintName = "SmartStoreDemo"
             ReferencedContainer = "container:SmartStoreDemo.xcodeproj">
@@ -50,7 +50,7 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "FA69ED6E153B9F2F00C26B11"
+            BlueprintIdentifier = "FA5098A0158FF313006D5127"
             BuildableName = "SmartStoreDemo.app"
             BlueprintName = "SmartStoreDemo"
             ReferencedContainer = "container:SmartStoreDemo.xcodeproj">
@@ -68,7 +68,7 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "FA69ED6E153B9F2F00C26B11"
+            BlueprintIdentifier = "FA5098A0158FF313006D5127"
             BuildableName = "SmartStoreDemo.app"
             BlueprintName = "SmartStoreDemo"
             ReferencedContainer = "container:SmartStoreDemo.xcodeproj">

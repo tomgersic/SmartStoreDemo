@@ -10,14 +10,14 @@ var debugMode = true;
 
 // The client ID value specified for your remote access object that defines
 // your application in Salesforce.
-var remoteAccessConsumerKey = "3MVG9rFJvQRVOvk5eFQEwN9RO2aYtZg1lCMZuesA7mLAno.g_Kj4z_As_oAPc4gOYhpQkHoJ8AGnIOEHBwEzj";
+var remoteAccessConsumerKey = "3MVG9yZ.WNe6byQD.L.nO.LAoJA1DIBbF2GJ5XvjYu0Q7RWiNKslrXMDp1ndNoZQz9VWn3gTM1hAArFB.TA6w";
 
 // The redirect URI value specified for your remote access object that defines
 // your application in Salesforce.
-var oauthRedirectURI = "testsfdc:///mobilesdk/detect/oauth/done";
+var oauthRedirectURI = "https://login.salesforce.com/services/oauth2/success";
 
 // The authorization/access scope(s) you wish to define for your application.
-var oauthScopes = ["visualforce","api"];
+var oauthScopes = ["web","api"];
 
 // The start data associated with the application.  Use SFHybridApp.LocalAppStartData for a "local"
 // PhoneGap-based application, and SFHybridApp.RemoteAppStartData for a Visualforce-based
@@ -26,9 +26,11 @@ var oauthScopes = ["visualforce","api"];
 var startData = new SFHybridApp.LocalAppStartData();  // Used for local REST-based "index.html" PhoneGap apps.
 //var startData = new SFHybridApp.RemoteAppStartData("/apex/BasicVFPage"); // Used for Visualforce-based apps.
 
-// Whether the container app should automatically refresh our oauth session on app foreground:
-// generally a good idea.
+// Whether the container app should automatically refresh our oauth session on app foreground
 var autoRefreshOnForeground = true;
+
+// Whether the container app should automatically refresh our oauth session periodically
+var autoRefreshPeriodically = true; 
 
 //-----------------------------------------------------------------
 // End configuration block

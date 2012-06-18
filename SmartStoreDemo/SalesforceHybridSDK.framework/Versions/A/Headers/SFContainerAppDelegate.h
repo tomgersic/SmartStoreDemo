@@ -28,6 +28,7 @@
 
 
 #import "SFOAuthCoordinator.h"
+#import "SFLogger.h"
 
 @class SalesforceOAuthPlugin;
 
@@ -37,20 +38,43 @@
  
  */
 
+/*
+ * The current version of the Salesforce Mobile SDK.
+ */
 extern NSString * const kSFMobileSDKVersion;
+
+/*
+ * The property key used to designate the user agent, in the app's default properties.
+ */
 extern NSString * const kUserAgentPropKey;
+
+/*
+ * The property key used to designate the "home" URL of the app, to be used if the app is
+ * offline and supports HTML5 offline caching.
+ */
 extern NSString * const kAppHomeUrlPropKey;
 
-/// The string used to uniquely identify the Salesforce OAuth plugin
+/*
+ * The designator used to signify that the app is a hybrid app.
+ */
+extern NSString * const kSFMobileSDKHybridDesignator;
+
+/*
+ * The string used to uniquely identify the Salesforce OAuth plugin.
+ */
 extern NSString * const kSFOAuthPluginName;
-/// The string used to uniquely identify the Salesforce SmartStore plugin
+
+/*
+ * The string used to uniquely identify the Salesforce SmartStore plugin.
+ */
 extern NSString * const kSFSmartStorePluginName;
 
 @interface SFContainerAppDelegate : PhoneGapDelegate {
     
 	NSString* invokeString;
     SalesforceOAuthPlugin *_oauthPlugin;
-    BOOL _nextUrlIsHomeUrl;
+    BOOL _foundHomeUrl;
+    BOOL _isAppStartup;
 }
 
 
@@ -67,6 +91,12 @@ extern NSString * const kSFSmartStorePluginName;
  */
 @property (nonatomic, readonly) NSString *userAgentString;
 
+/**
+ The log level assigned to the app.  Defaults to Debug for dev builds, and Info for release
+ builds.
+ */
+@property (assign) SFLogLevel appLogLevel;
+
 
 /**
  @return YES if this device is an iPad
@@ -78,6 +108,19 @@ extern NSString * const kSFSmartStorePluginName;
  * @param oauthView OAuth coordinator view to be added to main viewController's view during login. 
  */
 - (void)addOAuthViewToMainView:(UIView*)oauthView;
+
+/**
+ * Clears all of the app state, including user credentials, from the app, and optionally restarts
+ * the login process.
+ * @param restartAuthentication Whether or not to restart authentication after the app is reset.
+ */
+- (void)clearAppState:(BOOL)restartAuthentication;
+
+/**
+ * Essentially a call to clearAppState:YES.  The pin code functionality requires a logout function
+ * on the app, in the event of pin verification failure.
+ */
+- (void)logout;
 
 
 /**
