@@ -4,10 +4,6 @@
 function regLinkClickHandlers() {
     var $j = jQuery.noConflict();
     
-    $j('#link_show_records').click(function(){
-        console.log('show records clicked');
-        showRecordList("#record-list");
-    });
 
     $j('#link_query_sfdc').click(function() {
                                  SFHybridApp.logToConsole("Query SFDC Button Clicked");
@@ -35,6 +31,14 @@ function regLinkClickHandlers() {
                                        var soupName = $j("#text_smartstorename").val();
                                        querySoup(soupName);
                                        });
+    
+    $j('#link_query_smartstore_by_name').click(function(){
+                                               SFHybridApp.logToConsole("Query Smartstore by Name Button Clicked");
+                                               var soupName = $j("#text_smartstorename").val();
+                                               var recordName = $j("#text_queryByNameValue").val();
+                                               querySoupByRecordName(soupName,recordName);
+                                               });
+
     
     $j('#link_fetch_sfdc_accounts').click(function() {
                                           SFHybridApp.logToConsole("link_fetch_sfdc_accounts clicked");
@@ -123,6 +127,20 @@ function clearOfflineSoups(callback) {
 }
 
 /**
+ * Query Soup by Name, post contents to log
+ **/
+function querySoupByRecordName(soupName,recordName) {
+    SFHybridApp.logToConsole("Querying Soup "+soupName+" by record name "+recordName);
+    if (hasSmartstore()) {
+        var querySpec = navigator.smartstore.buildLikeQuerySpec("Name", recordName, null, 20);
+        
+        navigator.smartstore.querySoup(soupName,querySpec,
+                                       function(cursor) { onSuccessQuerySoup(cursor); },
+                                       logError);
+    }
+}
+
+/**
  * Query Soup, post contents to log
  **/
 function querySoup(soupName) {
@@ -136,6 +154,9 @@ function querySoup(soupName) {
     }
 }
 
+/**
+ * Soup Successfully Queried
+ **/
 function onSuccessQuerySoup(cursor) {
     console.log("onSuccessQuerySoup()");
     var entries = [];
