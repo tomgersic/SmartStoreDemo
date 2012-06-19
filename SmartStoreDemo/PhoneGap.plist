@@ -18,6 +18,7 @@
 	<true/>
 	<key>ExternalHosts</key>
 	<array>
+		<string>*.database.com</string>
 		<string>*.force.com</string>
 		<string>*.salesforce.com</string>
 	</array>

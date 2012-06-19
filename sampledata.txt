@@ -1,0 +1,5 @@
+Property__c newProperty = new Property__c(Name='Model Metrics',Address__c='600 w. Chicago', Agreed_Selling_Price__c=1000000000,Baths__c=2,Bedrooms__c=0,Buyer_Offer_Price__c=999999999,City__c='Chicago',Date_on_Market__c=Date.parse('03/10/2012'),Date_Sold__c=Date.parse('03/20/2012'),Exterior_Features__c='Landscaped Yard',Interior_Features__c='Bonus Room',Lot_Size__c=34943,Other_Details__c='What a great place!',Parking__c='Garage',Property_Description__c='On the river. Same building as Groupon',Property_Type__c='Unspecified',Square_Footage__c=73423,State__c='IL',Vendor_Request_Price__c=78923.23,Views__c='City/Skyline',Work_Completion_Certificate_Awarded__c=true,Work_Completion_Certificate_Awarded_Date__c=Date.parse('03/06/2012'),Year_Built__c=Date.parse('03/06/1920'),Zip_Code__c='60654');
+
+insert newProperty;
+
+insert new Repair__c(Details__c='These are the details of this repair',Property__c=newProperty.Id);
