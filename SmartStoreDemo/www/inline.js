@@ -24,6 +24,7 @@ function regLinkClickHandlers() {
                                  //query SFDC with ForceTK
                                  window.forcetkClient.ajax(queryString,function(response){
                                                            writeToSoup(soupName,response.records);
+                                                           showRecordList("#record-list",response.records);
                                                            },logError);
                                  
                                  
@@ -191,7 +192,7 @@ var recordData = [ {
   } ];
 
 
-function showRecordList(urlObj) {
+function showRecordList(urlObj,recordData) {
     console.log('Show Record List');
 
     // The pages we use to display our content are already in
