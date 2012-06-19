@@ -71,7 +71,7 @@ function writeToSoup(soupName,records) {
     if(hasSmartstore())
     {
         $j.each(records, function(index,value) {
-                SFHybridApp.logToConsole("record "+index+": "+JSON.stringify(value));
+                SFHybridApp.logToConsole("record "+index+": "+JSON.stringify(value,null,'<Br>'));
                 });
         
         navigator.smartstore.upsertSoupEntries(soupName,records, function(){
@@ -159,7 +159,7 @@ function onSuccessQuerySoup(cursor) {
 
     
     SFHybridApp.logToConsole("***ENTRIES***");
-    SFHybridApp.logToConsole(JSON.stringify(entries));
+    SFHybridApp.logToConsole(JSON.stringify(entries,null,'<br>'));
     SFHybridApp.logToConsole(entries.length);
 }
 
@@ -195,6 +195,9 @@ var recordData = [ {
     "Agreed_Selling_Price__c" : 1.0E9
   } ];
 
+/**
+ * Take the returned JSON and show the record list
+ **/
 
 function showRecordList(urlObj,recordData) {
     console.log('Show Record List');
@@ -233,9 +236,6 @@ function showRecordList(urlObj,recordData) {
         markup += "<li id='"+recordData[record].Id+"'><h3 class='ui-li-heading'>"+recordData[record].Name+"</h3><p class='ui-li-desc'>"+recordFields+"</p></li>";
     }
 
-
-    
-
     markup += "</ul>";
     // Find the h1 element in our header and inject the name of
     // the category into it.
@@ -272,5 +272,5 @@ function showRecordList(urlObj,recordData) {
  * Error Received
  **/
 function logError(error) {
-    SFHybridApp.logToConsole("Error: " + JSON.stringify(error));
+    SFHybridApp.logToConsole("Error: " + JSON.stringify(error,null,'<br>'));
 }
