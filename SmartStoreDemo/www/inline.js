@@ -128,7 +128,7 @@ function clearOfflineSoups(callback) {
 function querySoup(soupName) {
     SFHybridApp.logToConsole("Querying Soup "+soupName);
     if (hasSmartstore()) {
-        var querySpec = navigator.smartstore.buildAllQuerySpec("id", null, 20);
+        var querySpec = navigator.smartstore.buildAllQuerySpec("Id", null, 20);
         
         navigator.smartstore.querySoup(soupName,querySpec,
                                        function(cursor) { onSuccessQuerySoup(cursor); },
@@ -154,6 +154,10 @@ function onSuccessQuerySoup(cursor) {
     }
     
     navigator.smartstore.closeCursor(cursor);
+    
+    showRecordList("#record-list",entries);
+
+    
     SFHybridApp.logToConsole("***ENTRIES***");
     SFHybridApp.logToConsole(JSON.stringify(entries));
     SFHybridApp.logToConsole(entries.length);
