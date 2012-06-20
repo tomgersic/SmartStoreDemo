@@ -161,6 +161,7 @@ function onSuccessQuerySoup(cursor) {
     console.log("onSuccessQuerySoup()");
     var entries = [];
     
+    //define handler for paging
     function addEntriesFromCursor() {
         var curPageEntries = cursor.currentPageOrderedEntries;
         $j.each(curPageEntries, function(i,entry) {
@@ -168,17 +169,19 @@ function onSuccessQuerySoup(cursor) {
                 });
     }
     
+    //add the first page of results to entries
     addEntriesFromCursor();
     
+    //loop through available pages, populating entries
     while(cursor.currentPageIndex < cursor.totalPages - 1) {
         navigator.smartstore.moveCursorToNextPage(cursor, addEntriesFromCursor);
     }
     
+    //close the query cursor
     navigator.smartstore.closeCursor(cursor);
     
     showRecordList("#record-list",entries);
 
-    
     SFHybridApp.logToConsole("***ENTRIES***");
     SFHybridApp.logToConsole(JSON.stringify(entries,null,'<br>'));
     SFHybridApp.logToConsole(entries.length);
